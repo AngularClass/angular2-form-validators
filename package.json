@@ -1,6 +1,6 @@
 {
   "name": "@angularclass/form-validators",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular 2 template form validators by @AngularClass",
   "author": "PatrickJS <patrick@angularclass.com>",
   "license": "Apache-2.0",
