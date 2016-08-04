@@ -20,12 +20,21 @@ import {
   isUUID
 } from './validators';
 
+function wrapBoolean(fn, type) {
+  return function validator(c: any): {[key: string]: boolean} {
+    if (c.value !== undefined && c.value !== null && fn(c.value)) {
+      return null;
+    }
+    return {[type]: true};
+  }
+}
+
 
 @Directive({
   selector: '[ac-is-credit-card]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isCreditCard,
+    useValue: wrapBoolean(isCreditCard, 'isCreditCard'),
     multi: true
   }]
 })
@@ -35,7 +44,7 @@ export class AcIsCreditCardValidator {}
   selector: '[ac-is-base-64]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isBase64,
+    useValue: wrapBoolean(isBase64, 'isBase64'),
     multi: true
   }]
 })
@@ -45,7 +54,7 @@ export class AcIsBase64Validator {}
   selector: '[ac-is-email]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isEmail,
+    useValue: wrapBoolean(isEmail, 'isEmail'),
     multi: true
   }]
 })
@@ -55,7 +64,7 @@ export class AcIsEmailValidator {}
   selector: '[ac-is-json]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isJSON,
+    useValue: wrapBoolean(isJSON, 'isJSON'),
     multi: true
   }]
 })
@@ -65,7 +74,7 @@ export class AcIsJSONValidator {}
   selector: '[ac-is-phone]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isPhone,
+    useValue: wrapBoolean(isPhone, 'isPhone'),
     multi: true
   }]
 })
@@ -75,7 +84,7 @@ export class AcIsPhoneValidator {}
   selector: '[ac-is-uuid]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: isUUID,
+    useValue: wrapBoolean(isUUID, 'isUUID'),
     multi: true
   }]
 })
