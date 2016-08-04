@@ -1,7 +1,9 @@
-const creditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+// problem with chrome
+// const creditCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
 export function isCreditCard(value?: any): boolean {
   let sanitized = value.replace(/[^0-9]+/g, '');
-  if (!creditCard.test(sanitized)) {
+  // problem with chrome
+  if (!(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/.test(sanitized))) {
     return false;
   }
   let sum = 0;
@@ -39,10 +41,11 @@ export function isJSON(value?: any): boolean {
 
 
 
-
-const validatorExp = /^(?:[A-Z0-9+\/]{4})*(?:[A-Z0-9+\/]{2}==|[A-Z0-9+\/]{3}=|[A-Z0-9+\/]{4})$/i;
+// problem with chrome
+// const validatorExp = /^(?:[A-Z0-9+\/]{4})*(?:[A-Z0-9+\/]{2}==|[A-Z0-9+\/]{3}=|[A-Z0-9+\/]{4})$/i;
 export function isBase64(value?: any): boolean {
-  return validatorExp.test(value);
+// problem with chrome
+  return /^(?:[A-Z0-9+\/]{4})*(?:[A-Z0-9+\/]{2}==|[A-Z0-9+\/]{3}=|[A-Z0-9+\/]{4})$/i.test(value);
 }
 
 
@@ -69,7 +72,8 @@ const phones = {
 };
 export function isPhone(value?: any, locale?: any): boolean {
   let pattern = phones[locale] || uuid['en-US'];
-  return pattern.test(value);
+  // problem with chrome
+  return (new RegExp(pattern)).test(value);
 };
 
 
@@ -83,7 +87,8 @@ const uuid = {
 };
 export function isUUID(value: string, version?: string): boolean {
   let pattern = uuid[version] || uuid.all;
-  return pattern.test(value);
+  // problem with chrome
+  return (new RegExp(pattern)).test(value);
 }
 
 
@@ -95,6 +100,7 @@ var default_email_options = {
   allow_utf8_local_part: true,
   require_tld: true
 };
+
 var emailUserPart = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~]+$/i;
 var quotedEmailUser = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f]))*$/i;
 
@@ -107,7 +113,7 @@ export function isEmail (str?: any, opts: any = {}) {
   var options = Object.assign({}, opts, default_email_options);
 
   if (options.allow_display_name) {
-    var display_email = str.match(displayName);
+    var display_email = str.match((new RegExp(displayName, 'i')));
     if (display_email) {
       str = display_email[1];
     }
@@ -134,12 +140,12 @@ export function isEmail (str?: any, opts: any = {}) {
   if (user[0] === '"') {
     user = user.slice(1, user.length - 1);
     return options.allow_utf8_local_part ?
-      quotedEmailUserUtf8.test(user) :
-      quotedEmailUser.test(user);
+      (new RegExp(quotedEmailUserUtf8, 'i')).test(user) :
+      (new RegExp(quotedEmailUser, 'i')).test(user);
   }
 
   var pattern = options.allow_utf8_local_part ?
-    emailUserUtf8Part : emailUserPart;
+    (new RegExp(emailUserUtf8Part, 'i')) : (new RegExp(emailUserPart, 'i'));
 
   var user_parts = user.split('.');
   for (var i = 0; i < user_parts.length; i++) {
