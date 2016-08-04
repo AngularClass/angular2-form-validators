@@ -7,7 +7,7 @@ import * as validators from './validators';
 
 function createValidator(type) {
   const validator = validators[type];
-  return function validator(c: any): {[key: string]: boolean} {
+  return function customValidator(c: any): {[key: string]: boolean} {
     if (c.value !== undefined && c.value !== null && validator(c.value)) {
       return null;
     }
