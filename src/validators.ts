@@ -71,7 +71,7 @@ const phones = {
   'en-NZ': /^(\+?64|0)2\d{7,9}$/
 };
 export function isPhone(value?: any, locale?: any): boolean {
-  let pattern = phones[locale] || uuid['en-US'];
+  let pattern = phones[locale] || phones['en-US'];
   // problem with chrome
   return (new RegExp(pattern)).test(value);
 };
