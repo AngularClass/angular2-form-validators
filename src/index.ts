@@ -2,30 +2,24 @@ import {Directive} from '@angular/core';
 import {NG_VALIDATORS} from '@angular/common';
 
 
-import {
-  isCreditCard,
-  isBase64,
-  isEmail,
-  isJSON,
-  isPhone,
-  isUUID
-} from './validators';
+import * as validators from './validators';
 
-function wrapBoolean(fn, type) {
+
+function createValidator(type) {
+  const validator = validators[type];
   return function validator(c: any): {[key: string]: boolean} {
-    if (c.value !== undefined && c.value !== null && fn(c.value)) {
+    if (c.value !== undefined && c.value !== null && validator(c.value)) {
       return null;
     }
     return {[type]: true};
   }
 }
 
-
 @Directive({
   selector: '[ac-is-credit-card]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isCreditCard, 'isCreditCard'),
+    useValue: createValidator('isCreditCard'),
     multi: true
   }]
 })
@@ -35,7 +29,7 @@ export class AcIsCreditCardValidator {}
   selector: '[ac-is-base-64]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isBase64, 'isBase64'),
+    useValue: createValidator('isBase64'),
     multi: true
   }]
 })
@@ -45,7 +39,7 @@ export class AcIsBase64Validator {}
   selector: '[ac-is-email]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isEmail, 'isEmail'),
+    useValue: createValidator('isEmail'),
     multi: true
   }]
 })
@@ -55,7 +49,7 @@ export class AcIsEmailValidator {}
   selector: '[ac-is-json]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isJSON, 'isJSON'),
+    useValue: createValidator('isJSON'),
     multi: true
   }]
 })
@@ -65,7 +59,7 @@ export class AcIsJSONValidator {}
   selector: '[ac-is-phone]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isPhone, 'isPhone'),
+    useValue: createValidator('isPhone'),
     multi: true
   }]
 })
@@ -75,7 +69,7 @@ export class AcIsPhoneValidator {}
   selector: '[ac-is-uuid]',
   providers: [{
     provide: NG_VALIDATORS,
-    useValue: wrapBoolean(isUUID, 'isUUID'),
+    useValue: createValidator('isUUID'),
     multi: true
   }]
 })
