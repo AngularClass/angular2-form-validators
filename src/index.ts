@@ -16,7 +16,12 @@ function createValidator(type) {
 }
 
 @Directive({
-  selector: '[ac-is-credit-card][ngModel],[ac-is-credit-card][formControl]',
+  selector: '' +
+    '[ac-is-credit-card][ngModel],' +
+    '[ac-is-credit-card][formControl],' +
+    '[acIsCredit-card][ngModel],' +
+    '[acIsCredit-card][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isCreditCard'),
@@ -26,7 +31,12 @@ function createValidator(type) {
 export class AcIsCreditCardValidator {}
 
 @Directive({
-  selector: '[ac-is-base-64][ngModel],[ac-is-base-64][formControl]',
+  selector: '' +
+    '[ac-is-base-64][ngModel],' +
+    '[ac-is-base-64][formControl],' +
+    '[acIsBase64][ngModel],' +
+    '[acIsBase64][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isBase64'),
@@ -36,7 +46,12 @@ export class AcIsCreditCardValidator {}
 export class AcIsBase64Validator {}
 
 @Directive({
-  selector: '[ac-is-email][ngModel],[ac-is-email][formControl]',
+  selector: '' +
+    '[ac-is-email][ngModel],' +
+    '[ac-is-email][formControl],' +
+    '[acIsEmail][ngModel],' +
+    '[acIsEmail][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isEmail'),
@@ -46,7 +61,12 @@ export class AcIsBase64Validator {}
 export class AcIsEmailValidator {}
 
 @Directive({
-  selector: '[ac-is-json][ngModel],[ac-is-json][formControl]',
+  selector: '' +
+    '[ac-is-json][ngModel],' +
+    '[ac-is-json][formControl],' +
+    '[acIsJson][ngModel],' +
+    '[acIsJson][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isJSON'),
@@ -56,7 +76,12 @@ export class AcIsEmailValidator {}
 export class AcIsJSONValidator {}
 
 @Directive({
-  selector: '[ac-is-phone][ngModel],[ac-is-phone][formControl]',
+  selector: '' +
+    '[ac-is-phone][ngModel],' +
+    '[ac-is-phone][formControl],' +
+    '[acIsPhone][ngModel],' +
+    '[acIsPhone][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isPhone'),
@@ -66,7 +91,12 @@ export class AcIsJSONValidator {}
 export class AcIsPhoneValidator {}
 
 @Directive({
-  selector: '[ac-is-uuid][ngModel],[ac-is-uuid][formControl]',
+  selector: '' +
+    '[ac-is-uuid][ngModel],' +
+    '[ac-is-uuid][formControl],' +
+    '[acIsUUID][ngModel],' +
+    '[acIsUUID][formControl]' +
+  '',
   providers: [{
     provide: NG_VALIDATORS,
     useValue: createValidator('isUUID'),
