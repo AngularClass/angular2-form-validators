@@ -36,6 +36,9 @@ import {
 
 @Component({
   selector: 'app',
+  directives: [
+    ANGULARCLASS_FORM_VALIDATOR_DIRECTIVES
+  ],
   template: `
   <form>
     <input ac-is-credit-card>
