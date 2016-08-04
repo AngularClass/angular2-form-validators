@@ -1,14 +1,5 @@
-import {Component, Directive, Host} from '@angular/core';
-import {
-  ControlGroup,
-  NgIf,
-  NgFor,
-  NG_VALIDATORS,
-  FORM_DIRECTIVES,
-  NgControl,
-  Validators,
-  NgForm
-} from '@angular/common';
+import {Directive} from '@angular/core';
+import {NG_VALIDATORS} from '@angular/common';
 
 
 import {
