@@ -10,7 +10,7 @@ ___
 Angular 2 form validators by @AngularClass
 
 # Request a validator that is missing
-[Submit a Request](https://github.com/AngularClass/angular2-form-validators/issues/new)
+[Submit a Request](https://github.com/AngularClass/angular2-form-validators/issues/new) and I will create it and include it here.
 
 
 
