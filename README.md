@@ -36,9 +36,6 @@ import {
 
 @Component({
   selector: 'app',
-  directives: [
-    ANGULARCLASS_FORM_VALIDATOR_DIRECTIVES
-  ],
   template: `
   <form>
     <input ac-is-credit-card>
@@ -51,6 +48,23 @@ import {
   `
 })
 class App {
+}
+
+@NgModule({
+  bootstrap: [
+    App
+  ],
+  declarations: [
+    App,
+    ...ANGULARCLASS_FORM_VALIDATOR_DIRECTIVES
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ]
+})
+export default class AboutModule {
+
 }
 ```
 Another example
